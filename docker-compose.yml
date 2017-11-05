@@ -1,0 +1,15 @@
+version: "3.2"
+
+services:
+
+  portainer:
+    image: portainer/portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 9000:9000
+
+  memcached:
+    image: library/memcached:1.5-alpine
+    ports:
+      - 11211:11211

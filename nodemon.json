@@ -1,0 +1,4 @@
+{
+  "verbose": true,
+  "watch": ["themes/**/*.*", "server/**/*.js", "plugins/**/*.js", "config/**/*.js"]
+}

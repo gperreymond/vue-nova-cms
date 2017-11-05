@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Nova is a modern flat file CMS / Surveys in javascript.",
   "scripts": {
-    "test": "echo \"no test specified\" && exit 0"
+    "start": "DEBUG=nova:* NODE_ENV=development node_modules/.bin/nodemon --config nodemon.json index.js",
+    "test:standard": "node_modules/.bin/standard --fix server/**/*.js src/**/*.js test/**/*.js | node_modules/.bin/snazzy"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,29 @@
   },
   "homepage": "https://github.com/gperreymond/vue-nova-cms#readme",
   "dependencies": {
-    "vue": "2.5.3"
+    "bell": "8.8.0",
+    "bluebird": "3.5.1",
+    "catbox": "9.0.0",
+    "catbox-memcached": "1.1.1",
+    "catbox-memory": "3.0.0",
+    "debug": "3.1.0",
+    "hapi": "16.6.2",
+    "hapi-auth-jwt2": "7.3.0",
+    "inert": "4.2.1",
+    "nconf": "0.9.1",
+    "vision": "4.1.0",
+    "vue": "2.5.3",
+    "yamljs": "0.3.0"
+  },
+  "devDependencies": {
+    "babel-core": "6.26.0",
+    "babel-loader": "7.1.2",
+    "babel-plugin-transform-runtime": "6.23.0",
+    "babel-preset-env": "1.6.1",
+    "babel-preset-stage-2": "6.24.1",
+    "babel-register": "6.26.0",
+    "nodemon": "1.12.1",
+    "snazzy": "7.0.0",
+    "standard": "10.0.3"
   }
 }
