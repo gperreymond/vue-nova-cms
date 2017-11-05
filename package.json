@@ -1,0 +1,22 @@
+{
+  "name": "vue-nova-cms",
+  "version": "1.0.0",
+  "description": "Nova is a modern flat file CMS / Surveys in javascript.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gperreymond/vue-nova-cms.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gperreymond/vue-nova-cms/issues"
+  },
+  "homepage": "https://github.com/gperreymond/vue-nova-cms#readme"
+}
