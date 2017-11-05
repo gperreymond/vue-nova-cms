@@ -103,7 +103,6 @@ internals.initialize = function () {
         errorFunc: internals.errorFunc
       })
       // route: static
-      internals.server.route({ method: 'GET', path: '/modules/{p*}', handler: { directory: { path: path.resolve(__dirname, '../node_modules') } } })
       internals.server.route({ method: 'GET', path: '/themes/{p*}', handler: { directory: { path: path.resolve(__dirname, '../themes') } } })
       resolve()
     })
