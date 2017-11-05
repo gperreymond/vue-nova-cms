@@ -1,0 +1,8 @@
+name: "Nova API"
+description: ""
+rules:
+  -
+    type: route
+    method: GET
+    path: "/api/plugins"
+    handler: "plugins/list.js"

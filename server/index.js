@@ -4,6 +4,7 @@ const path = require('path')
 const Promise = require('bluebird')
 const Hapi = require('hapi')
 
+const Nova = require('./plugins/Nova')
 const Bell = require('bell')
 const Inert = require('inert')
 const Vision = require('vision')
@@ -102,9 +103,14 @@ internals.initialize = function () {
         verifyOptions: { algorithms: [ 'HS256' ] },
         errorFunc: internals.errorFunc
       })
+      // methods
+      internals.server.method({ name: 'getPlugins', method: require('./methods/getPlugins'), options: {bind: internals.server} })
       // route: static
       internals.server.route({ method: 'GET', path: '/themes/{p*}', handler: { directory: { path: path.resolve(__dirname, '../themes') } } })
-      resolve()
+      internals.server.register([Nova], (error) => {
+        if (error) return reject(error)
+        resolve()
+      })
     })
   })
 }
