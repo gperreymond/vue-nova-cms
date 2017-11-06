@@ -1,7 +1,8 @@
+import Debug from 'debug'
 import authControl from './methods/authControl'
 
 export default {
-  name: 'application',
+  name: 'ui-application',
   data: function () {
     return {
       currentState: 'STATE_INITIALIZE',
@@ -12,21 +13,22 @@ export default {
     }
   },
   mounted: function () {
-    console.log('mounted')
+    this.debug('mounted')
     this.authControl()
   },
   updated: function () {
-    console.log('updated')
+    this.debug('updated')
     if (this.currentState === 'STATE_INITIALIZE') this.authControl()
   },
   destroyed: function () {
-    console.log('destroyed')
+    this.debug('destroyed')
   },
   methods: {
+    debug: Debug('nova:admin:ui-application'),
     authControl,
-    showError: function (error) {
-      console.log('showError')
-      console.error(error)
+    catchError: function (error) {
+      this.debug('catchError %o', error)
+      if (error.status === 401) this.$router.push('/admin/login')
     }
   }
 }

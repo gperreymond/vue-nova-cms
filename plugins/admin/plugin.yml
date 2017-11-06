@@ -4,10 +4,15 @@ rules:
     -
       type: route
       method: GET
-      path: "/admin"
+      path: "/admin/{p*}"
       handler: "server/handlers/admin.js"
     -
       type: route
       method: GET
       path: "/admin/assets/{p*}"
       handler: "server/handlers/assets.js"
+    -
+      type: route
+      method: POST
+      path: "/admin/auth/control"
+      handler: "server/handlers/auth-control.js"

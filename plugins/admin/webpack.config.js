@@ -8,7 +8,7 @@ module.exports = {
     bundle: path.resolve(__dirname, 'client/main.js')
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json', '.css'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': path.join(__dirname, 'client')
