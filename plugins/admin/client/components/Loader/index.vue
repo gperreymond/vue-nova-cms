@@ -5,7 +5,6 @@
         <div class="ui active inverted dimmer">
           <div class="ui massive text loader">Chargement...</div>
         </div>
-        <p></p>
       </div>
     </div>
   </div>

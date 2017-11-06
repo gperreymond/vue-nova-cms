@@ -9,6 +9,8 @@ import Homepage from '@/pages/Homepage'
 import Login from '@/pages/Login'
 import Loader from '@/components/Loader'
 
+if (process.env.DEBUG === true) window.localStorage.debug = 'nova:admin:*'
+
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 

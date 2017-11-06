@@ -84,7 +84,12 @@ internals.initialize = function () {
     debug('initialize')
     internals.server = new Hapi.Server()
     // plugins
-    internals.server.connection({ port: config.server.port })
+    internals.server.connection({
+      port: config.server.port,
+      routes: {
+        cors: {origin: ['*']}
+      }
+    })
     internals.server.register([Inert, Vision, AuthJWT2, Bell], (error) => {
       if (error) return reject(error)
       // auth google

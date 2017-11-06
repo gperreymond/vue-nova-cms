@@ -2,6 +2,7 @@ const path = require('path')
 
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -35,6 +36,9 @@ module.exports = {
       NODE_ENV: 'development',
       DEBUG: true
     }),
-    new ExtractTextPlugin('../css/bundle.min.css')
+    new ExtractTextPlugin('../css/bundle.min.css'),
+    new UglifyJSPlugin({
+      parallel: true
+    })
   ]
 }

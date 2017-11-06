@@ -5,3 +5,9 @@
 .holder .middle {
   height: 100%;
 }
+.ui.card {
+  margin: auto;
+}
+.footer {
+  text-align: center;
+}
