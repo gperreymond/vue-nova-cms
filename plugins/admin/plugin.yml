@@ -1,0 +1,13 @@
+name: "Nova Administration"
+description: ""
+rules:
+    -
+      type: route
+      method: GET
+      path: "/admin"
+      handler: "server/handlers/admin.js"
+    -
+      type: route
+      method: GET
+      path: "/admin/assets/{p*}"
+      handler: "server/handlers/assets.js"

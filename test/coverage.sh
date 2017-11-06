@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export BABEL_ENV=test
+export NODE_ENV=test
 export NOVA_SETTINGS_USERPATH="$(pwd)/test/user"
 export NOVA_SERVER_PORT=9090
 

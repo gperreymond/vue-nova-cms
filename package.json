@@ -5,7 +5,8 @@
   "scripts": {
     "start": "DEBUG=nova:* NODE_ENV=development node_modules/.bin/nodemon --config nodemon.json index.js",
     "test:standard": "node_modules/.bin/standard --fix server/**/*.js src/**/*.js test/**/*.js | node_modules/.bin/snazzy",
-    "test:coverage": "./test/coverage.sh"
+    "test:coverage": "./test/coverage.sh",
+    "plugin-admin:start": "./node_modules/.bin/webpack --watch --colors --config=plugins/admin/webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -34,20 +35,28 @@
     "yamljs": "0.3.0"
   },
   "devDependencies": {
+    "axios": "0.17.0",
     "babel-core": "6.26.0",
     "babel-loader": "7.1.2",
+    "babel-plugin-istanbul": "4.1.5",
     "babel-plugin-transform-runtime": "6.23.0",
     "babel-preset-env": "1.6.1",
     "babel-preset-stage-2": "6.24.1",
     "babel-register": "6.26.0",
     "chai": "4.1.2",
     "coveralls": "3.0.0",
+    "css-loader": "0.28.7",
+    "dotenv-webpack": "1.5.4",
+    "extract-text-webpack-plugin": "3.0.2",
     "mocha": "4.0.1",
     "nodemon": "1.12.1",
     "nyc": "11.3.0",
     "sinon": "4.1.1",
     "snazzy": "7.0.0",
-    "standard": "10.0.3"
+    "standard": "10.0.3",
+    "vue-loader": "13.4.0",
+    "vue-template-compiler": "2.5.3",
+    "webpack": "3.8.1"
   },
   "standard": {
     "globals": [

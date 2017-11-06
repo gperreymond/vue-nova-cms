@@ -5,4 +5,5 @@ rules:
     type: route
     method: GET
     path: "/api/plugins"
-    handler: "plugins/list.js"
+    handler: "plugins/list/handler.js"
+    config: "plugins/list/config.js"
