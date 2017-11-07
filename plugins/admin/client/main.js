@@ -27,9 +27,8 @@ const router = new VueRouter({
 })
 
 new Vue({
-  el: '#application',
   router,
   components: {
     Loader
   }
-}).$mount('#application')
+}).$mount('#root')

@@ -1,23 +1,11 @@
 <template>
-  <div class="holder">
-    <div class="ui middle aligned grid">
-      <div class="eight column wide">
-        <div class="ui card">
-          <div class="content">
-            <div class="header">Nova</div>
-          </div>
-          <div class="content">
-            <h4 class="ui sub header">Administrator</h4>
-            <div class="ui small feed">
-              Identification
-              Vous êtes un étranger, montrez-vous sous votre meilleur profil !
-            </div>
-          </div>
-          <div class="extra content footer">
-            <button v-on:click="authLogin" class="ui button large red">Google +</button>
-          </div>
-        </div>
-      </div>
+  <div class="content full center no-border">
+    <h1 class="title">NOVA</h1>
+    <h3 class="title">Administrator</h3>
+    <div class="content login">
+      <h3 class="dark-red-text">Vous êtes un étranger</h3>
+      <p>Nous n’avons trouvé aucune trace de votre passage.</p>
+      <button v-on:click="authLogin" class="button dark-red">Google +</button>
     </div>
   </div>
 </template>
