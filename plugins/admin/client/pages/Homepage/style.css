@@ -3,6 +3,18 @@
   height: 100%;
 }
 .masthead.segment {
-  min-height: 500px;
-  height: 500px;
+}
+.ui.inverted.blue.header {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 3em;
+}
+.ui.inverted.blue.header > .content > .sub.header {
+  font-size: 0.5em;
+}
+h3.ui.header {
+  font-size: 2em;
+}
+.ui.text > p {
+  font-size: 1.33em;
 }

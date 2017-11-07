@@ -1,6 +1,7 @@
 <template>
   <div class="holder">
     <ui-loader v-if="currentState==='STATE_INITIALIZE'" />
+    <!-- top menus -->
     <div v-if="currentState==='STATE_COMPLETE'" class="ui inverted vertical masthead center aligned segment">
       <div class="ui container">
         <div class="ui large secondary inverted pointing menu">
@@ -12,10 +13,38 @@
         </div>
       </div>
       <div class="ui text container">
-      <h1 class="ui inverted header">Imagine-a-Company</h1>
-      <h2>Do whatever you want when you want to.</h2>
-      <div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div>
+        <h2 class="ui header blue inverted">
+          <div class="content">
+            Homepage
+            <div class="sub header">Bienvenue sur l'espace de travail.</div>
+          </div>
+        </h2>
+      </div>
     </div>
+    <!-- content -->
+    <div v-if="currentState==='STATE_COMPLETE'" class="ui vertical stripe quote segment">
+      <div class="ui container equal width stackable internally celled grid">
+        <div class="row">
+          <div class="ui text column">
+            <h3 class="ui header">Utilisateurs</h3>
+            <p>Voici un bon indicateur du taux d'utilisation du site, il faut continuer comme ça..."</p>
+          </div>
+          <div class="ui statistics center aligned column">
+            <div class="statistic">
+              <div class="value">4</div>
+              <div class="label">Admins</div>
+            </div>
+            <div class="statistic">
+              <div class="value">1245</div>
+              <div class="label">Utilisateurs<br />au total</div>
+            </div>
+            <div class="statistic">
+              <div class="value">50</div>
+              <div class="label">Inscriptions<br />novembre</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
