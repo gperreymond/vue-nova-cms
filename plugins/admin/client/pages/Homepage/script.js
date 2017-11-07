@@ -1,6 +1,8 @@
 import Debug from 'debug'
+
 import authControl from './methods/authControl'
 import authLogout from './methods/authLogout'
+import getUsersStatistics from './methods/getUsersStatistics'
 
 export default {
   name: 'ui-application',
@@ -10,12 +12,17 @@ export default {
       user: {
         connected: false
       },
-      message: 'Hello, it is this easy!'
+      stats: {
+        admin: 0,
+        users: 0,
+        lasts: 0
+      }
     }
   },
   mounted: function () {
     this.debug('mounted')
     this.authControl()
+    this.getUsersStatistics()
   },
   updated: function () {
     this.debug('updated')
@@ -28,6 +35,7 @@ export default {
     debug: Debug('nova:admin:ui-application'),
     authControl,
     authLogout,
+    getUsersStatistics,
     connected: function (data) {
       this.user = {
         connected: true,

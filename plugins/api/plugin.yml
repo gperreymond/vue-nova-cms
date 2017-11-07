@@ -4,6 +4,6 @@ rules:
   -
     type: route
     method: GET
-    path: "/api/plugins"
-    handler: "plugins/list/handler.js"
-    config: "plugins/list/config.js"
+    path: "/api/users/queries/getUsersStatisticsQuery"
+    handler: "users/queries/getUsersStatisticsQuery.js"
+    config: "users/config.js"

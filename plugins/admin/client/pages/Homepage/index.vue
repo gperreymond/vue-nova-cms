@@ -31,15 +31,15 @@
           </div>
           <div class="ui statistics center aligned column">
             <div class="statistic">
-              <div class="value">4</div>
+              <div class="value">{{stats.admin}}</div>
               <div class="label">Admins</div>
             </div>
             <div class="statistic">
-              <div class="value">1245</div>
+              <div class="value">{{stats.users}}</div>
               <div class="label">Utilisateurs<br />au total</div>
             </div>
             <div class="statistic">
-              <div class="value">50</div>
+              <div class="value">{{stats.lasts}}</div>
               <div class="label">Inscriptions<br />novembre</div>
             </div>
           </div>

@@ -1,5 +1,6 @@
 const debug = require('debug')('nova:server')
 
+const glob = require('glob-promise')
 const path = require('path')
 const Promise = require('bluebird')
 const Hapi = require('hapi')
@@ -108,13 +109,18 @@ internals.initialize = function () {
         verifyOptions: { algorithms: [ 'HS256' ] },
         errorFunc: internals.errorFunc
       })
-      // methods
-      internals.server.method({ name: 'getPlugins', method: require('./methods/getPlugins'), options: {bind: internals.server} })
-      // route: static
-      internals.server.route({ method: 'GET', path: '/themes/{p*}', handler: { directory: { path: path.resolve(__dirname, '../themes') } } })
-      internals.server.register([Nova], (error) => {
-        if (error) return reject(error)
-        resolve()
+      // cqrs to methods
+      glob(path.resolve(__dirname, 'cqrs/**/*.js')).then(files => {
+        files.map(file => {
+          let filename = path.basename(file, '.js')
+          internals.server.method({ name: filename, method: require(file), options: {bind: internals.server} })
+        })
+        // route: static
+        internals.server.route({ method: 'GET', path: '/themes/{p*}', handler: { directory: { path: path.resolve(__dirname, '../themes') } } })
+        internals.server.register([Nova], (error) => {
+          if (error) return reject(error)
+          resolve()
+        })
       })
     })
   })
