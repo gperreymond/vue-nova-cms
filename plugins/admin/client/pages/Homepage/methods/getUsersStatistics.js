@@ -9,7 +9,7 @@ export default function () {
   }
   axios(options).then(response => {
     this.debug('getUsersStatistics response %o', response)
-    this.stats = response.data.result
+    this.statsUsers = response.data.result
   }).catch(error => {
     this.debug('getUsersStatistics error %o', error)
     this.catchError(error.response)

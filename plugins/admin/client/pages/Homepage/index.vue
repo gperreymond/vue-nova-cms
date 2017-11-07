@@ -20,22 +20,40 @@
         </h2>
       </div>
     </div>
-    <!-- content -->
-    <div v-if="currentState==='STATE_COMPLETE'" class="ui vertical stripe quote segment">
-      <div class="ui container equal width stackable internally celled grid">
-        <div class="row">
-          <div class="ui text column">
-            <h3 class="ui header">Utilisateurs</h3>
-            <p>Voici un bon indicateur du taux d'utilisation du site, il faut continuer comme ça...</p>
-          </div>
-          <div class="ui statistics center aligned column">
+    <!-- contents -->
+    <div v-if="currentState==='STATE_COMPLETE'" class="ui container stackable grid mastbody">
+      <!-- stats users -->
+      <div class="ui eight wide column">
+        <div class="ui text blue">
+          <h2 class="ui left floated header">Nombre d'tilisateurs</h2>
+          <div class="ui clearing divider"></div>
+          <p>Voici un bon indicateur du taux d'utilisation du site, il faut continuer comme ça...</p>
+          <div class="ui statistics">
             <div class="statistic">
-              <div class="value">{{stats.users}}</div>
+              <div class="value">{{statsUsers.total}}</div>
               <div class="label">Utilisateurs<br />au total</div>
             </div>
             <div class="statistic">
-              <div class="value">{{stats.lasts}}</div>
+              <div class="value">{{statsUsers.lasts}}</div>
               <div class="label">Inscriptions<br />novembre</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- stats answers -->
+      <div class="ui eight wide column">
+        <div class="ui text blue">
+          <h2 class="ui left floated header">Taux de réponses</h2>
+          <div class="ui clearing divider"></div>
+          <p>Calcul en pourcentage du rapport entre le nombre de questionnaires remplis finalement utilisables et le nombre total de contacts réalisés. Dans le cas d'une enquête en vis-à-vis, cet indicateur permet notamment d'apprécier la compétence des enquêteurs à sensibiliser les répondants à participer à l'enquête.</p>
+          <div class="ui statistics">
+            <div class="statistic">
+              <div class="value">{{statsAnswers.total}}</div>
+              <div class="label">Réponses<br />au total</div>
+            </div>
+            <div class="statistic">
+              <div class="value">{{statsAnswers.lasts}}</div>
+              <div class="label">Réponses<br />novembre</div>
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import Debug from 'debug'
 import authControl from './methods/authControl'
 import authLogout from './methods/authLogout'
 import getUsersStatistics from './methods/getUsersStatistics'
+import getAnswersStatistics from './methods/getAnswersStatistics'
 
 export default {
   name: 'ui-application',
@@ -12,20 +13,26 @@ export default {
       user: {
         connected: false
       },
-      stats: {
-        users: 0,
+      statsUsers: {
+        total: 0,
+        lasts: 0
+      },
+      statsAnswers: {
+        total: 0,
         lasts: 0
       }
     }
   },
+  beforeMount: function () {
+    this.debug('beforeMount')
+    // this.authControl()
+  },
   mounted: function () {
     this.debug('mounted')
-    this.authControl()
-    this.getUsersStatistics()
+    if (this.currentState === 'STATE_INITIALIZE') this.authControl()
   },
   updated: function () {
     this.debug('updated')
-    if (this.currentState === 'STATE_INITIALIZE') this.authControl()
   },
   destroyed: function () {
     this.debug('destroyed')
@@ -35,6 +42,7 @@ export default {
     authControl,
     authLogout,
     getUsersStatistics,
+    getAnswersStatistics,
     connected: function (data) {
       this.user = {
         connected: true,
@@ -46,6 +54,8 @@ export default {
         }
       }
       this.debug('user connected %o', this.user)
+      this.getUsersStatistics()
+      this.getAnswersStatistics()
     },
     disconnected: function () {
       this.debug('user disconnected')

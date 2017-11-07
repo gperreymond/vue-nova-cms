@@ -6,4 +6,10 @@ rules:
     method: GET
     path: "/api/users/queries/getUsersStatisticsQuery"
     handler: "users/queries/getUsersStatisticsQuery.js"
-    config: "users/config.js"
+    config: "config.js"
+  -
+    type: route
+    method: GET
+    path: "/api/answers/queries/getAnswersStatisticsQuery"
+    handler: "answers/queries/getAnswersStatisticsQuery.js"
+    config: "config.js"

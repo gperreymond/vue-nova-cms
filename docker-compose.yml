@@ -7,9 +7,28 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - 9000:9000
+      - "9000:9000"
 
   memcached:
     image: library/memcached:1.5-alpine
     ports:
-      - 11211:11211
+      - "11211:11211"
+
+  couchdb:
+    image: library/couchdb:1.6
+    environment:
+      COUCHDB_USER: guest
+      COUCHDB_PASSWORD: guest
+    volumes:
+      - ./config/couchdb/default.d:/usr/local/etc/couchdb/default.d
+    ports:
+      - "5984:5984"
+
+  rabbitmq:
+    image: rabbitmq:3.6-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
