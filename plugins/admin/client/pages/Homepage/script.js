@@ -13,7 +13,6 @@ export default {
         connected: false
       },
       stats: {
-        admin: 0,
         users: 0,
         lasts: 0
       }

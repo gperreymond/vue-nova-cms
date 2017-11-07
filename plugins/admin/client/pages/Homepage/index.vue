@@ -5,8 +5,7 @@
     <div v-if="currentState==='STATE_COMPLETE'" class="ui inverted vertical masthead center aligned segment">
       <div class="ui container">
         <div class="ui large secondary inverted pointing menu">
-          <a class="active item">Home</a>
-          <a class="item">Users</a>
+          <a href="/admin" class="active item">Home</a>
           <div class="right item">
             <a v-on:click="authLogout" class="ui inverted red button">Logout</a>
           </div>
@@ -27,13 +26,9 @@
         <div class="row">
           <div class="ui text column">
             <h3 class="ui header">Utilisateurs</h3>
-            <p>Voici un bon indicateur du taux d'utilisation du site, il faut continuer comme ça..."</p>
+            <p>Voici un bon indicateur du taux d'utilisation du site, il faut continuer comme ça...</p>
           </div>
           <div class="ui statistics center aligned column">
-            <div class="statistic">
-              <div class="value">{{stats.admin}}</div>
-              <div class="label">Admins</div>
-            </div>
             <div class="statistic">
               <div class="value">{{stats.users}}</div>
               <div class="label">Utilisateurs<br />au total</div>

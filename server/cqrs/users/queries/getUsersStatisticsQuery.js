@@ -4,7 +4,7 @@ const glob = require('glob-promise')
 
 const method = function (next) {
   const start = new Date()
-  const usersDirpath = path.resolve(__dirname, '../../../../data/collector/postgres/individuals')
+  const usersDirpath = path.resolve(__dirname, '../../../../data/users/individuals')
   const lastsDirpath = path.resolve(usersDirpath, '2017/06')
   let requests = {
     users: glob(path.resolve(usersDirpath, '**/*.yml')),
@@ -17,7 +17,6 @@ const method = function (next) {
       name: 'getUsersStatisticsQuery',
       exectime: new Date() - start,
       result: {
-        admin: 3,
         users: result.users.length,
         lasts: result.lasts.length
       }
