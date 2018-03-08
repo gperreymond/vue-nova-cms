@@ -1,20 +1,12 @@
-const debug = require('debug')('nova:global')
+const Server = require('./server')
+const server = new Server()
 
-const server = require('./server')
-
-debug('initialize')
-server.initialize()
-  .then(() => {
-    return server.startCache()
-  })
-  .then(() => {
-    debug('cache has started')
-    return server.start()
-  })
-  .then(() => {
-    debug('server has started')
-  })
-  .catch(error => {
-    console.log(error)
+const start = async () => {
+  const result = await server.start().catch(e => {
+    console.log(e)
     process.exit(1)
   })
+  console.log(result)
+}
+
+start()

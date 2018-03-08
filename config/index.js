@@ -9,6 +9,7 @@ module.exports = {
     port: nconf.get('NOVA_MEMCACHED_PORT') || 11211
   },
   server: {
+    host: nconf.get('NOVA_SERVER_HOST') || '0.0.0.0',
     port: nconf.get('NOVA_SERVER_PORT') || 8000,
     cache: {
       type: nconf.get('NOVA_SERVER_CACHE') || 'memory'

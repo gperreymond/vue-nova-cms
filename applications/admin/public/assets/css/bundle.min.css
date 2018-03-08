@@ -1,0 +1,199 @@
+.black-text {
+  color: #242628;
+}
+.dark-red-text {
+  color: #c64e4e;
+}
+.purple-text {
+  color: #cc6699;
+}
+.light-blue-text {
+  color: #e3eefb;
+}
+.dark-blue-text {
+  color: #5da3c7;
+}
+.dark-green-text {
+  color: #77b382;
+}
+.orange-text {
+  color: #dda055;
+}
+
+.dark-red, .button.dark-red {
+  background-color: #c64e4e;
+  color: #ffffff;
+}
+.purple {
+  background-color: #cc6699;
+  color: #ffffff;
+}
+.light-blue {
+  background-color: #e3eefb;
+  color: #242628;
+}
+.dark-blue {
+  background-color: #5da3c7;
+  color: #ffffff;
+}
+.dark-green {
+  background-color: #77b382;
+  color: #ffffff;
+}
+.orange {
+  background-color: #dda055;
+  color: #ffffff;
+}
+header {
+  width: 100%;
+  padding: 10px;
+  margin: 0;
+  position: fixed;
+  background-color: #ffffff;
+  color: #ffffff;
+  box-shadow: 0 0 1px 0 rgba(61, 119, 180, 0.12), 0 0.25rem 12px 0 rgba(91, 139, 199, 0.24);
+  display: flex;
+  justify-content: center;
+}
+
+h4.header, h1.header {
+  padding: 0;
+  margin: 0;
+}
+
+.header.right {
+  float: right;
+}
+.button {
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0;
+  padding: 10px;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  transition: .3s color, .3s background-color, .3s border-color;
+  text-shadow: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  box-shadow: 0 2px 4px 0 rgba(62, 80, 104, 0.32);
+  color: #ffffff;
+  background-color: #5da3c7;
+  font-size: 20px;
+  line-height: 20px;
+  outline: none;
+  border: none;
+}
+.button:hover {
+  opacity: 0.75;
+  color: #ffffff;
+}
+.content {
+  background: #ffffff;
+  padding: 20px;
+  box-shadow: 0 0 1px 0 rgba(61, 119, 180, 0.12), 0 0.25rem 12px 0 rgba(91, 139, 199, 0.24);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 900px;
+}
+
+.content.no-border {
+  background: transparent;
+  box-shadow: none
+}
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f6f9ff;
+  color: #242628;
+}
+
+button:focus {
+  outline:0;
+}
+
+a, h1, h2, h3, h4, h5, h6, p, blockquote {
+  font-family: 'Lato', sans-serif;
+  font-style: normal;
+  font-weight: 200;
+  font-size: 16px;
+  line-height: 16px;
+  padding: 0;
+  margin: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  display: block;
+}
+
+a, a:visited {
+  color: #242628;
+}
+a:hover {
+  color: #5da3c7;
+}
+
+hr {
+  outline: none;
+  border: none;
+}
+
+h1 {
+  font-size: 32px;
+  line-height: 32px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+h2 {
+  font-size: 28px;
+  line-height: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+h3 {
+  font-size: 26px;
+  line-height: 26px;
+  font-weight: 600;
+}
+h4 {
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 400;
+}
+h5 {
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 200;
+}
+p {
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 200;
+}
+
+div {
+  padding: 0;
+  margin: 0;
+}
+
+@media screen and (max-width: 800px) and (min-width: 640px) {
+}
+
+@media screen and (max-width: 640px) {
+}

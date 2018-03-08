@@ -10,7 +10,7 @@ const method = function (next) {
   next(null, {
     type: 'query',
     domain: 'users',
-    name: 'getUsersStatisticsQuery',
+    name: 'getAnswersStatisticsQuery',
     exectime: new Date() - start,
     result: {
       total,

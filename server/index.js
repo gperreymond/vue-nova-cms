@@ -1,129 +1,110 @@
 const debug = require('debug')('nova:server')
 
-const glob = require('glob-promise')
-const path = require('path')
-const Promise = require('bluebird')
 const Hapi = require('hapi')
-
-const Nova = require('./plugins/Nova')
+const Hoek = require('hoek')
 const Bell = require('bell')
 const Inert = require('inert')
 const Vision = require('vision')
 const AuthJWT2 = require('hapi-auth-jwt2')
-
 const Catbox = require('catbox')
 const CatboxMemory = require('catbox-memory')
 const CatboxMemcached = require('catbox-memcached')
 
-const config = require('../config')
+const Nova = require('./plugins/nova')
 
-const internals = {
-  server: false,
-  cache: false,
-  validateFunc: function (decoded, request, callback) {
-    callback(null, true)
-  },
-  errorFunc: function (errorContext) {
-    return errorContext
+class Server {
+  constructor () {
+    this.__server = false
+    this.__cache = false
+    this.config = require('../config')
   }
-}
-
-internals.startCache = function (type) {
-  return new Promise((resolve, reject) => {
-    if (!type) type = config.server.cache.type
-    if (internals.server === false) {
-      internals.cache = false
-      return reject(new Error('Server not started'))
-    }
-    switch (type) {
-      case 'memory':
-        internals.cache = new Catbox.Client(CatboxMemory)
-        break
-      case 'memcached':
-        internals.cache = new Catbox.Client(CatboxMemcached, config.memcached)
-        break
-      default:
-        return reject(new Error('Server cache type not allowed'))
-    }
-    internals.cache.start().then(() => {
-      internals.server.app.cache = internals.cache
-      resolve({
-        isReady: internals.cache.isReady(),
-        result: internals.cache
-      })
-    }).catch(error => {
-      console.log(error)
-      return reject(error)
-    })
-  })
-}
-
-internals.stopCache = async function () {
-  await internals.cache.stop()
-  internals.cache = false
-  return {
-    isReady: false
+  async validate (decoded, request) {
+    return { isValid: true }
   }
-}
-
-internals.stop = function () {
-  internals.server.stop()
-}
-
-internals.start = function () {
-  return new Promise((resolve, reject) => {
-    debug('start')
-    internals.server.start((error) => {
-      if (error) return reject(error)
-      resolve()
-    })
-  })
-}
-
-internals.initialize = function () {
-  return new Promise((resolve, reject) => {
-    debug('initialize')
-    internals.server = new Hapi.Server()
-    // plugins
-    internals.server.connection({
-      port: config.server.port,
-      routes: {
-        cors: {origin: ['*']}
+  async cache (type) {
+    try {
+      debug('cache starting process')
+      Hoek.assert(type, 'type is mandatory')
+      Hoek.assert(this.config.server, 'this.config.server is mandatory')
+      Hoek.assert(this.config.server.cache, 'this.config.server.cache is mandatory')
+      Hoek.assert(this.config.server.cache.type, 'this.config.server.cache.type is mandatory')
+      switch (type) {
+        case 'memcached':
+          this.__cache = new Catbox.Client(CatboxMemcached, this.config.memcached)
+          break
+        default:
+          this.__cache = new Catbox.Client(CatboxMemory)
       }
-    })
-    internals.server.register([Inert, Vision, AuthJWT2, Bell], (error) => {
-      if (error) return reject(error)
-      // auth google
-      internals.server.auth.strategy('google', 'bell', {
+      await this.__cache.start()
+      debug('cache started')
+      return {cached: true}
+    } catch (e) {
+      return Promise.reject(e)
+    }
+  }
+  async initialize () {
+    try {
+      debug('server initializing process')
+      Hoek.assert(this.config.server, 'this.config.server is mandatory')
+      Hoek.assert(this.config.server.host, 'this.config.server.host is mandatory')
+      Hoek.assert(this.config.server.port, 'this.config.server.port is mandatory')
+      debug(`... server: ${this.config.server.host}:${this.config.server.port}`)
+      this.__server = Hapi.server({
+        host: this.config.server.host,
+        port: this.config.server.port
+      })
+      // plugins
+      debug('... plugins initializing process')
+      debug('...... plugin: Inert, Vision, AuthJWT2, Bell')
+      await this.__server.register([Inert, Vision, AuthJWT2, Bell])
+      // strategies
+      this.__server.auth.strategy('google', 'bell', {
         provider: 'google',
-        password: config.server.auth.google.password,
+        password: this.config.server.auth.google.password,
         isSecure: false,
-        clientId: config.server.auth.google.clientId,
-        clientSecret: config.server.auth.google.clientSecret,
-        location: config.server.auth.google.location
+        clientId: this.config.server.auth.google.clientId,
+        clientSecret: this.config.server.auth.google.clientSecret,
+        location: this.config.server.auth.google.location
       })
-      // auth jwt2
-      internals.server.auth.strategy('jwt', 'jwt', {
-        key: config.server.auth.jwt2.secret,
-        validateFunc: internals.validateFunc,
-        verifyOptions: { algorithms: [ 'HS256' ] },
-        errorFunc: internals.errorFunc
+      this.__server.auth.strategy('jwt', 'jwt', {
+        key: this.config.server.auth.jwt2.secret,
+        validate: this.validate,
+        verifyOptions: { algorithms: [ 'HS256' ] }
       })
-      // cqrs to methods
-      glob(path.resolve(__dirname, 'cqrs/**/*.js')).then(files => {
-        files.map(file => {
-          let filename = path.basename(file, '.js')
-          internals.server.method({ name: filename, method: require(file), options: {bind: internals.server} })
-        })
-        // route: static
-        internals.server.route({ method: 'GET', path: '/themes/{p*}', handler: { directory: { path: path.resolve(__dirname, '../themes') } } })
-        internals.server.register([Nova], (error) => {
-          if (error) return reject(error)
-          resolve()
-        })
-      })
-    })
-  })
+      debug('...... plugin: Nova')
+      await this.__server.register([Nova])
+      debug('... plugins initialized')
+      debug('server initialized')
+      return {initialized: true}
+    } catch (e) {
+      return Promise.reject(e)
+    }
+  }
+  async start () {
+    try {
+      debug('server starting process')
+      // server initialize
+      await this.initialize().catch(err => { throw err })
+      await this.__server.initialize()
+      // cache initialize
+      await this.cache(this.config.server.cache.type).catch(err => { throw err })
+      this.__server.app.cache = this.__cache
+      debug('server started')
+      await this.__server.start()
+      return {started: true}
+    } catch (e) {
+      return Promise.reject(e)
+    }
+  }
+  async stop () {
+    try {
+      await this.__server.app.cache.stop()
+      await this.__server.stop()
+      return {stopped: true}
+    } catch (e) {
+      return Promise.reject(e)
+    }
+  }
 }
 
-module.exports = internals
+module.exports = Server
