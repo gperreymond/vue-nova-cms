@@ -36,6 +36,14 @@ aliases:
           command: |
             yarn test:standard
             yarn test:coverage
+  - &step_webpacks
+    steps:
+      - checkout
+      - *restore_node_modules
+      - run:
+          name: Build clients
+          command: |
+            yarn build:admin
 
 jobs:
   install:
@@ -68,6 +76,12 @@ workflows:
       - tests:
           requires:
             - install
+          filters:
+            branches:
+              only: master
+      - step_webpacks:
+          requires:
+            - tests
           filters:
             branches:
               only: master
