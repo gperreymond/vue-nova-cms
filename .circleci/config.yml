@@ -15,7 +15,7 @@ aliases:
   - &use_docker_node8
     docker:
       - image: circleci/node:8
-    working_directory: /root/project
+    working_directory: /tmp/project
   - &step_install
     steps:
       - checkout
@@ -26,7 +26,7 @@ aliases:
       - save_cache:
           key: *npm_cache_key
           paths:
-            - /root/project/node_modules
+            - /tmp/project/node_modules
   - &step_tests
     steps:
       - checkout
