@@ -1,19 +1,20 @@
 import axios from 'axios'
 
-export default function () {
-  this.debug('authLogout')
-  var options = {
-    method: 'post',
-    url: window.location.origin + '/admin/auth/logout',
-    responseType: 'json'
-  }
-  axios(options).then(response => {
+export default async function () {
+  try {
+    this.debug('authLogout')
+    var options = {
+      method: 'post',
+      url: window.location.origin + '/admin/auth/logout',
+      responseType: 'json'
+    }
+    const response = await axios(options).catch(error => { throw error })
     this.debug('authLogout response %o', response)
     this.disconnected()
     window.location = window.location.origin + '/admin'
-  }).catch(error => {
-    this.debug('authLogout error %o', error)
+  } catch (e) {
+    this.debug('authLogout error %o', e)
     this.disconnected()
-    this.catchError(error.response)
-  })
+    this.catchError(e.response)
+  }
 }

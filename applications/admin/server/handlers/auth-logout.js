@@ -1,5 +1,6 @@
 const handler = async function (request, h) {
-  reply({logout: true}).unstate('rememberMePluginAdmin', { isSecure: false, isHttpOnly: false })
+  h.unstate('rememberMePluginAdmin', { isSecure: false, isHttpOnly: false })
+  return h.redirect('/admin')
 }
 
 module.exports = handler

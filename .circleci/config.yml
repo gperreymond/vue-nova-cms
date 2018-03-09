@@ -1,0 +1,37 @@
+version: 2
+
+aliases:
+  - &use_docker_node8
+    docker:
+      - image: circleci/node:8
+  - &step_tests
+    steps:
+      - checkout
+      - run:
+          name: Install node dependencies
+          command: yarn
+      - run:
+          name: Run tests
+          command: |
+            yarn test:standard
+            yarn test:coverage
+
+jobs:
+  tests:
+    <<: *use_docker_node8
+    <<: *step_tests
+
+workflows:
+  version: 2
+  commit-tests:
+    jobs:
+      - tests:
+          filters:
+            branches:
+              ignore: master
+  deploy-demo:
+    jobs:
+      - tests:
+          filters:
+            branches:
+              only: master

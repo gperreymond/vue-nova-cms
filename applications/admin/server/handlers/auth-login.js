@@ -24,8 +24,7 @@ const handler = async function (request, h) {
     }
     const token = jwt.sign(payload, config.server.auth.jwt2.secret)
     h.state('rememberMePluginAdmin', token, { ttl, isSecure: false, isHttpOnly: false })
-    console.log(h)
-    return {token}
+    return h.redirect('/admin')
   } catch (e) {
     console.log(e)
     return Promise.reject(e)

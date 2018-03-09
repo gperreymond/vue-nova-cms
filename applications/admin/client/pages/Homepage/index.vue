@@ -19,16 +19,16 @@
           <hr />
           <h5>Le nombre d'ulisateurs est un KPI essentiel à suivre.</h5>
           <p></p>
-          <p>{{statsUsers.total}} utilisateurs en tout</p>
-          <p>{{statsUsers.lasts}} utilisateurs le mois dernier</p>
+          <p>0utilisateurs en tout</p>
+          <p>0 utilisateurs le mois dernier</p>
         </div>
         <div class="statistic">
           <h2 class="dark-green-text">Réponses</h2>
           <hr />
           <h5>Les sondages, et par extensions les réponses sont le coeur du système.</h5>
           <p></p>
-          <p>{{statsAnswers.total}} réponses en tout</p>
-          <p>{{statsAnswers.lasts}} réponses le mois dernier</p>
+          <p>0 réponses en tout</p>
+          <p>0 réponses le mois dernier</p>
         </div>
       </div>
     </div>

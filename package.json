@@ -1,20 +1,20 @@
 {
   "name": "vue-nova-cms",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Nova is a modern flat file CMS / Surveys in javascript.",
   "scripts": {
-    "start": "DEBUG=nova:* NODE_ENV=development node_modules/.bin/nodemon --config nodemon.json index.js",
-    "start:admin": "./node_modules/.bin/webpack --watch --colors --config=applications/admin/webpack.config.js",
+    "start:server": "DEBUG=nova:* NODE_ENV=development node_modules/.bin/nodemon --config nodemon.json index.js",
+    "start:admin": "./node_modules/.bin/webpack -d --watch --colors --config=applications/admin/webpack.config.js",
     "test:standard": "node_modules/.bin/standard --fix server/**/*.js src/**/*.js test/**/*.js | node_modules/.bin/snazzy",
     "test:coverage": "./tasks/test.sh",
-    "build:admin": "./node_modules/.bin/webpack --colors --config=applications/admin/webpack.config.prod.js"
+    "build:admin": "./node_modules/.bin/webpack -p --colors --config=applications/admin/webpack.config.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gperreymond/vue-nova-cms.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/gperreymond/vue-nova-cms/issues"
   },
@@ -51,7 +51,7 @@
     "chai": "4.1.2",
     "coveralls": "3.0.0",
     "css-loader": "0.28.10",
-    "extract-text-webpack-plugin": "3.0.2",
+    "extract-text-webpack-plugin": "4.0.0-beta.0",
     "mocha": "5.0.4",
     "nodemon": "1.17.1",
     "nyc": "11.4.1",
@@ -59,11 +59,11 @@
     "sinon": "4.4.2",
     "snazzy": "7.1.1",
     "standard": "11.0.0",
-    "style-loader": "0.20.2",
-    "uglifyjs-webpack-plugin": "1.2.2",
+    "style-loader": "0.20.3",
     "vue-loader": "14.2.1",
     "vue-template-compiler": "2.5.13",
-    "webpack": "3.8.1"
+    "webpack": "4.1.1",
+    "webpack-cli": "2.0.10"
   },
   "standard": {
     "globals": [
