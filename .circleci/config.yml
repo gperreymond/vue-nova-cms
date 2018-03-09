@@ -18,6 +18,7 @@ aliases:
   - &step_install
     steps:
       - checkout
+      - *restore_node_modules
       - run:
           name: Install node dependencies
           command: yarn
