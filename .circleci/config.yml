@@ -2,9 +2,9 @@ version: 2
 
 references:
   npm_cache_key: &npm_cache_key
-    v1-dependency-npm-{{ checksum "package.json" }}
+    v2-dependency-npm-{{ checksum "package.json" }}
   npm_backup_cache_key: &npm_backup_cache_key
-    v1-dependency-npm
+    v2-dependency-npm
   restore_node_modules: &restore_node_modules
     restore_cache:
       keys:
