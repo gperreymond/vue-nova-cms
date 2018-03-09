@@ -21,6 +21,10 @@ aliases:
       - run:
           name: Install node dependencies
           command: yarn
+      - save_cache:
+          key: *npm_cache_key
+          paths:
+            - /root/project/node_modules
   - &step_tests
     steps:
       - checkout
@@ -30,10 +34,6 @@ aliases:
           command: |
             yarn test:standard
             yarn test:coverage
-      - save_cache:
-          key: *npm_cache_key
-          paths:
-            - /root/project/node_modules
 
 jobs:
   install:
