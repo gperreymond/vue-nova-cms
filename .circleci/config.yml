@@ -52,7 +52,7 @@ workflows:
       - install:
           filters:
             branches:
-              ignore: master
+              only: master
       - tests:
           requires:
             - install
