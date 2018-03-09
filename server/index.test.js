@@ -35,7 +35,7 @@ describe('[server] internals', () => {
       expect(e).to.equal(null)
     }
   })
-  it('should create memcached cache', async () => {
+  xit('should create memcached cache', async () => {
     try {
       const internals = new Server()
       await internals.cache('memcached').catch(err => { throw err })
