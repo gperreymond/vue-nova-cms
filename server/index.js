@@ -1,5 +1,6 @@
 const debug = require('debug')('nova:server')
 
+const path = require('path')
 const Hapi = require('hapi')
 const Hoek = require('hoek')
 const Bell = require('bell')
@@ -74,6 +75,12 @@ class Server {
       debug('...... plugin: Nova')
       await this.__server.register([Nova])
       debug('... plugins initialized')
+      // routes
+      await this.__server.route({
+        method: 'GET',
+        path: '/bundles/{p*}',
+        handler: { directory: { path: path.resolve(__dirname, '../build') } }
+      })
       debug('server initialized')
       return {initialized: true}
     } catch (e) {

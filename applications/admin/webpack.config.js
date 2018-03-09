@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
-    bundle: path.resolve(__dirname, 'client/main.js')
+    main: path.resolve(__dirname, 'client/main.js')
   },
   resolve: {
     extensions: ['.js', '.vue', '.json', '.css'],
@@ -15,7 +15,7 @@ module.exports = {
     }
   },
   output: {
-    path: path.resolve(__dirname, 'public/assets/js'),
+    path: path.resolve(__dirname, '../../build/admin/'),
     filename: '[name].min.js'
   },
   module: {
@@ -35,6 +35,6 @@ module.exports = {
       NODE_ENV: 'development',
       DEBUG: true
     }),
-    new ExtractTextPlugin('../css/bundle.min.css')
+    new ExtractTextPlugin('[name].min.css')
   ]
 }

@@ -13,7 +13,3 @@ yarn.lock
 package-lock.json
 
 nconf.json
-/plugins/admin/public/assets/css/
-/plugins/admin/public/assets/js/
-/user/
-/data/
