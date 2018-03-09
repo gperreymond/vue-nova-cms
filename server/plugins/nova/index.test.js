@@ -15,6 +15,7 @@ describe('[server] nova plugin', () => {
   it('should register', async () => {
     try {
       const server = { app: {} }
+      server.route = () => {}
       await plugin.register(server)
       expect(server.app).to.have.property('nova')
     } catch (e) {

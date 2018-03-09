@@ -8,11 +8,11 @@ describe('[server] internals', () => {
     expect(internals.__server).to.equal(false)
     expect(internals.__cache).to.equal(false)
   })
-  it('should execute validateFunc', async (done) => {
+  xit('should execute validateFunc', async (done) => {
     const internals = new Server()
     internals.validateFunc(null, null, done)
   })
-  it('should execute errorFunc', async () => {
+  xit('should execute errorFunc', async () => {
     const internals = new Server()
     const result = internals.errorFunc({test: true})
     expect(result.test).to.equal(true)
