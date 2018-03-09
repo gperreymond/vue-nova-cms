@@ -1,5 +1,16 @@
 version: 2
 
+references:
+  npm_cache_key: &npm_cache_key
+    v1-dependency-npm-{{ checksum "package.json" }}
+  npm_backup_cache_key: &npm_backup_cache_key
+    v1-dependency-npm
+  restore_node_modules: &restore_node_modules
+    restore_cache:
+      keys:
+        - *npm_cache_key
+        - *npm_backup_cache_key
+
 aliases:
   - &use_docker_node8
     docker:
@@ -10,20 +21,19 @@ aliases:
       - run:
           name: Install node dependencies
           command: yarn
-      - persist_to_workspace:
-          root: /home/circleci/project
-          paths:
-            - node_modules
   - &step_tests
     steps:
-      - attach_workspace:
-          at: /home/circleci/project
       - checkout
+      - *restore_node_modules
       - run:
           name: Run tests
           command: |
             yarn test:standard
             yarn test:coverage
+      - save_cache:
+          key: *npm_cache_key
+          paths:
+            - /root/project/node_modules
 
 jobs:
   install:
