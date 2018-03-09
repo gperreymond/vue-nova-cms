@@ -15,6 +15,7 @@ aliases:
   - &use_docker_node8
     docker:
       - image: circleci/node:8
+    working_directory: /root/project
   - &step_install
     steps:
       - checkout
