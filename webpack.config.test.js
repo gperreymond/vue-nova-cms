@@ -1,13 +1,4 @@
-const path = require('path')
-
 module.exports = {
-  entry: {
-    admin: path.resolve(__dirname, 'applications/admin/client/main.jsx')
-  },
-  output: {
-    path: path.resolve(__dirname, '.tmp'),
-    filename: '[name].min.js'
-  },
   mode: 'development',
   resolve: {
     extensions: ['.js', '.vue', '.json', '.css'],

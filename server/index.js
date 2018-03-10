@@ -12,6 +12,7 @@ const CatboxMemory = require('catbox-memory')
 const CatboxMemcached = require('catbox-memcached')
 
 const Nova = require('./plugins/nova')
+const config = require('../config')
 
 class Server {
   constructor () {
@@ -80,6 +81,16 @@ class Server {
         method: 'GET',
         path: '/bundles/{p*}',
         handler: { directory: { path: path.resolve(__dirname, '../build') } }
+      })
+      await this.__server.route({
+        method: 'GET',
+        path: '/hc',
+        handler: async () => {
+          return {
+            alive: true,
+            commit: `https://github.com/gperreymond/vue-nova-cms/commit/${config.commit}`
+          }
+        }
       })
       debug('server initialized')
       return {initialized: true}

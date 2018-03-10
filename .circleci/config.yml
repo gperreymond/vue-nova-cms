@@ -36,6 +36,7 @@ aliases:
           command: |
             yarn test:standard
             yarn test:server
+            yarn test:applications
   - &step_webpack
     steps:
       - checkout
@@ -44,6 +45,13 @@ aliases:
           name: Build applications bundless
           command: |
             yarn build:applications
+  - &step_build_docker_image
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build docker image
+          command: docker build -t gperreymond/vue-nova-cms .
 
 jobs:
   install:
@@ -55,6 +63,9 @@ jobs:
   webpack:
     <<: *use_docker_node8
     <<: *step_webpack
+  build_docker_image:
+    <<: *use_docker_node8
+    <<: *step_build_docker_image
 
 workflows:
   version: 2
@@ -85,6 +96,12 @@ workflows:
       - webpack:
           requires:
             - test
+          filters:
+            branches:
+              only: master
+      - build_docker_image:
+          requires:
+            - webpack
           filters:
             branches:
               only: master

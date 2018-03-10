@@ -4,6 +4,8 @@ const nconf = require('nconf')
 nconf.argv().env().file({ file: 'nconf.json' })
 
 module.exports = {
+  env: process.env.NODE_ENV,
+  commit: process.env.NOVA_LAST_COMMIT || 'localhost',
   memcached: {
     host: nconf.get('NOVA_MEMCACHED_HOST') || 'localhost',
     port: nconf.get('NOVA_MEMCACHED_PORT') || 11211

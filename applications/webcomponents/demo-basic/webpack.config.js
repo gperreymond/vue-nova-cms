@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, 'main.jsx')
+    main: path.resolve(__dirname, 'main.js')
   },
   resolve: {
     extensions: ['.js', '.vue', '.json', '.css'],
