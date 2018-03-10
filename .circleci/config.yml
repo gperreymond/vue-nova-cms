@@ -64,7 +64,7 @@ workflows:
           filters:
             branches:
               ignore: master
-      - tests:
+      - test:
           requires:
             - install
           filters:
@@ -76,15 +76,15 @@ workflows:
           filters:
             branches:
               only: master
-      - tests:
+      - test:
           requires:
             - install
           filters:
             branches:
               only: master
-      - webpacks:
+      - webpack:
           requires:
-            - tests
+            - test
           filters:
             branches:
               only: master
