@@ -4,7 +4,7 @@ import authControl from './methods/authControl'
 import authLogout from './methods/authLogout'
 
 export default {
-  name: 'ui-application',
+  name: 'ui-homepage',
   data: function () {
     return {
       currentState: 'STATE_INITIALIZE',

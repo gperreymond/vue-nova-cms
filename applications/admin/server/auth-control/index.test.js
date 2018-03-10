@@ -2,8 +2,8 @@ const { expect } = require('chai')
 
 const handler = require('.')
 
-describe('[admin] application', () => {
-  it('should', async () => {
+describe('[admin] auth-control handler', () => {
+  it('should return statusCode 401, because user not found', async () => {
     try {
       const request = {
         state: {}

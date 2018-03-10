@@ -35,7 +35,7 @@ aliases:
           name: Run tests
           command: |
             yarn test:standard
-            yarn test:coverage
+            yarn test:server
   - &step_webpack
     steps:
       - checkout

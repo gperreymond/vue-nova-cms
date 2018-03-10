@@ -5,8 +5,9 @@
   "scripts": {
     "start:server": "DEBUG=nova:* NODE_ENV=development node_modules/.bin/nodemon --config nodemon.json index.js",
     "start:applications": "./node_modules/.bin/webpack -d --watch --colors --config=webpack.config.js",
-    "test:standard": "node_modules/.bin/standard --fix server/**/*.js src/**/*.js test/**/*.js | node_modules/.bin/snazzy",
-    "test:coverage": "./tasks/test.sh",
+    "test:standard": "./node_modules/.bin/standard --fix server/**/*.js src/**/*.js test/**/*.js | node_modules/.bin/snazzy",
+    "test:client": "cross-env NODE_ENV=test nyc --clean --include=applications/**/*.js --include=applications/**/*.vue --report-dir ./coverage/client mocha-webpack --require test/setup.js --webpack-config webpack.config.test.js applications/**/*.spec.js",
+    "test:server": "cross-env NODE_ENV=test nyc --clean --include=applications/**/server/**/*.js --include=server/**/*.js --report-dir ./coverage/server mocha --opts .mocharc",
     "build:applications": "./node_modules/.bin/webpack -p --colors --config=webpack.config.js"
   },
   "repository": {
@@ -51,13 +52,16 @@
     "babel-preset-stage-2": "6.24.1",
     "babel-register": "6.26.0",
     "chai": "4.1.2",
-    "coveralls": "3.0.0",
+    "cross-env": "5.1.4",
     "css-loader": "0.28.10",
+    "expect": "22.4.0",
     "extract-text-webpack-plugin": "4.0.0-beta.0",
+    "jsdom": "11.6.2",
+    "jsdom-global": "3.0.2",
     "mocha": "5.0.4",
+    "mocha-webpack": "1.0.1",
     "nodemon": "1.17.1",
     "nyc": "11.4.1",
-    "shelljs": "0.8.1",
     "sinon": "4.4.2",
     "snazzy": "7.1.1",
     "standard": "11.0.0",
@@ -67,8 +71,21 @@
     "vue-loader": "14.2.1",
     "vue-router": "3.0.1",
     "vue-template-compiler": "2.5.14",
+    "vue-test-utils": "1.0.0-beta.11",
     "webpack": "4.1.1",
-    "webpack-cli": "2.0.11"
+    "webpack-cli": "2.0.11",
+    "webpack-node-externals": "1.6.0"
+  },
+  "nyc": {
+    "require": [
+      "babel-register"
+    ],
+    "reporter": [
+      "lcov",
+      "json-summary"
+    ],
+    "instrument": false,
+    "sourceMap": false
   },
   "standard": {
     "globals": [
