@@ -27,7 +27,7 @@ aliases:
           key: *npm_cache_key
           paths:
             - /tmp/project/node_modules
-  - &step_tests
+  - &step_test
     steps:
       - checkout
       - *restore_node_modules
@@ -36,25 +36,25 @@ aliases:
           command: |
             yarn test:standard
             yarn test:coverage
-  - &step_webpacks
+  - &step_webpack
     steps:
       - checkout
       - *restore_node_modules
       - run:
-          name: Build clients
+          name: Build applications bundless
           command: |
-            yarn build:admin
+            yarn build:applications
 
 jobs:
   install:
     <<: *use_docker_node8
     <<: *step_install
-  tests:
+  test:
     <<: *use_docker_node8
-    <<: *step_tests
-  webpacks:
+    <<: *step_test
+  webpack:
     <<: *use_docker_node8
-    <<: *step_webpacks
+    <<: *step_webpack
 
 workflows:
   version: 2
