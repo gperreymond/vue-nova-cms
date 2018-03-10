@@ -1,13 +1,13 @@
 {
   "name": "vue-nova-cms",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Nova is a modern flat file CMS / Surveys in javascript.",
   "scripts": {
     "start:server": "DEBUG=nova:* NODE_ENV=development node_modules/.bin/nodemon --config nodemon.json index.js",
-    "start:admin": "./node_modules/.bin/webpack -d --watch --colors --config=applications/admin/webpack.config.js",
+    "start:applications": "./node_modules/.bin/webpack -d --watch --colors --config=webpack.config.js",
     "test:standard": "node_modules/.bin/standard --fix server/**/*.js src/**/*.js test/**/*.js | node_modules/.bin/snazzy",
     "test:coverage": "./tasks/test.sh",
-    "build:admin": "./node_modules/.bin/webpack -p --colors --config=applications/admin/webpack.config.js"
+    "build:applications": "./node_modules/.bin/webpack -p --colors --config=webpack.config.js"
   },
   "repository": {
     "type": "git",
