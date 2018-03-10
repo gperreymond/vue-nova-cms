@@ -1,4 +1,4 @@
-import Debug from 'debug'
+import debug from 'debug'
 
 export default {
   name: 'ui-loader',
@@ -16,6 +16,6 @@ export default {
     this.debug('destroyed')
   },
   methods: {
-    debug: Debug('nova:admin:ui-loader')
+    debug: debug('nova:admin:ui-loader')
   }
 }

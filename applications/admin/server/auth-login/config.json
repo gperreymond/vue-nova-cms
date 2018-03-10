@@ -1,0 +1,6 @@
+{
+  "auth": {
+    "strategy": "google",
+    "mode": "try"
+  }
+}

@@ -8,14 +8,10 @@ describe('[server] internals', () => {
     expect(internals.__server).to.equal(false)
     expect(internals.__cache).to.equal(false)
   })
-  xit('should execute validateFunc', async (done) => {
+  it('should execute validate', async () => {
     const internals = new Server()
-    internals.validateFunc(null, null, done)
-  })
-  xit('should execute errorFunc', async () => {
-    const internals = new Server()
-    const result = internals.errorFunc({test: true})
-    expect(result.test).to.equal(true)
+    const result = await internals.validate()
+    expect(result.isValid).to.equal(true)
   })
   it('should not create cache because type is null', async () => {
     try {
@@ -31,14 +27,6 @@ describe('[server] internals', () => {
     try {
       const internals = new Server()
       await internals.cache('memory').catch(err => { throw err })
-    } catch (e) {
-      expect(e).to.equal(null)
-    }
-  })
-  xit('should create memcached cache', async () => {
-    try {
-      const internals = new Server()
-      await internals.cache('memcached').catch(err => { throw err })
     } catch (e) {
       expect(e).to.equal(null)
     }

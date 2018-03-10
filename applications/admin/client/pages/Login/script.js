@@ -1,4 +1,4 @@
-import Debug from 'debug'
+import debug from 'debug'
 import authLogin from './methods/authLogin'
 
 export default {
@@ -17,7 +17,7 @@ export default {
     this.debug('destroyed')
   },
   methods: {
-    debug: Debug('nova:admin:ui-login'),
+    debug: debug('nova:admin:ui-login'),
     authLogin
   }
 }

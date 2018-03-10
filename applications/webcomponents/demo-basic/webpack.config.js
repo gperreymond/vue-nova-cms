@@ -5,17 +5,16 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, 'client/main.jsx')
+    main: path.resolve(__dirname, 'main.jsx')
   },
   resolve: {
     extensions: ['.js', '.vue', '.json', '.css'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': path.join(__dirname, 'client')
+      'vue$': 'vue/dist/vue.esm.js'
     }
   },
   output: {
-    path: path.resolve(__dirname, '../../build/admin/'),
+    path: path.resolve(__dirname, '../../../build/webcomponents/demo-basic'),
     filename: '[name].min.js'
   },
   module: {

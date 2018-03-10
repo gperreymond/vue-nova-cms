@@ -1,4 +1,4 @@
-import Debug from 'debug'
+import debug from 'debug'
 
 import authControl from './methods/authControl'
 import authLogout from './methods/authLogout'
@@ -27,7 +27,7 @@ export default {
     this.debug('destroyed')
   },
   methods: {
-    debug: Debug('nova:admin:ui-application'),
+    debug: debug('nova:admin:ui-application'),
     authControl,
     authLogout,
     connected: function (data) {

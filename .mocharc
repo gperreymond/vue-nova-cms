@@ -1,3 +1,5 @@
 --timeout 2000
 --bail
+--require babel-register
 --recursive server
+--recursive applications

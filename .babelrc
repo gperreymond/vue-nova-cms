@@ -1,0 +1,12 @@
+{
+  "presets": [["env", {
+      "targets": {
+        "node": "8"
+      }
+    }]],
+  "plugins": [
+    "transform-vue-jsx",
+    [ "babel-plugin-webpack-aliases", { "config": "./applications/admin/webpack.config.js" } ],
+    [ "babel-plugin-webpack-aliases", { "config": "./applications/cms/webpack.config.js" } ]
+  ]
+}
