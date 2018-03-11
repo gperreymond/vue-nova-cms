@@ -1,4 +1,4 @@
-import { EventStore } from '../_libs/vue-event-store.js'
+import { VueEventStore } from '../_libs/vue-event-store'
 
 export default {
   name: 'demo-vue-again',
@@ -12,14 +12,13 @@ export default {
     }
   },
   created: function () {
-    EventStore.$on(EventStore.EVENT_INITIALIZE_STORE, (state) => {
-      console.log(EventStore.EVENT_INITIALIZE_STORE)
+    VueEventStore.$on(VueEventStore.EVENT_STORE_UPDATED, (state) => {
       this.state = state
     })
   },
   mounted: function () {
     console.log(this.type, this._uid, 'mounted')
-    EventStore.$emit(EventStore.EVENT_COMPONENT_MOUNTED, this)
+    VueEventStore.$emit(VueEventStore.EVENT_COMPONENT_MOUNTED, this)
   },
   updated: function () {
     console.log(this.type, this._uid, 'updated')

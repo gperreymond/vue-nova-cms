@@ -1,4 +1,4 @@
-import { EventStore } from '../_libs/vue-event-store.js'
+import { VueEventStore } from '../_libs/vue-event-store'
 
 export default {
   name: 'demo-vue',
@@ -13,17 +13,19 @@ export default {
   },
   mounted: function () {
     console.log(this.type, this._uid, 'mounted')
-    EventStore.$emit(EventStore.EVENT_COMPONENT_MOUNTED, this)
+    VueEventStore.$emit(VueEventStore.EVENT_COMPONENT_MOUNTED, this)
   },
   updated: function () {
     console.log(this.type, this._uid, 'updated')
   },
   destroyed: function () {
     console.log(this.type, this._uid, 'destroyed')
+    VueEventStore.$emit(VueEventStore.EVENT_COMPONENT_DESTROYED, this._uid)
   },
   methods: {
     destroyMe: function () {
-      EventStore.$emit(EventStore.EVENT_DESTROY_COMPONENT, this)
+      this.$el.remove()
+      this.$destroy()
     }
   }
 }
