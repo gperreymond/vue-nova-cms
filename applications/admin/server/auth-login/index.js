@@ -31,4 +31,7 @@ const handler = async function (request, h) {
   }
 }
 
-module.exports = handler
+module.exports.method = ['GET', 'POST']
+module.exports.path = '/admin/auth/login'
+module.exports.config = require('./config.json')
+module.exports.handler = handler

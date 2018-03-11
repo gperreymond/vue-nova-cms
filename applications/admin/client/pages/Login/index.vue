@@ -7,7 +7,6 @@
       <p>Nous n’avons trouvé aucune trace de votre passage.</p>
       <button v-on:click="authLogin" class="button dark-red">Google +</button>
     </div>
-    <demo-basic></demo-basic>
   </div>
 </template>
 

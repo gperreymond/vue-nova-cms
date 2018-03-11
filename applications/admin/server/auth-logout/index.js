@@ -3,4 +3,6 @@ const handler = async function (request, h) {
   return h.redirect('/admin')
 }
 
-module.exports = handler
+module.exports.method = 'POST'
+module.exports.path = '/admin/auth/logout'
+module.exports.handler = handler

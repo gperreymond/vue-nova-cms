@@ -3,8 +3,6 @@ const debug = require('debug')('nova:server:nova-plugin')
 const Hoek = require('hoek')
 const path = require('path')
 const glob = require('glob-promise')
-const YAML = require('yamljs')
-const _ = require('lodash')
 
 class NovaPlugin {
   constructor (server) {
@@ -12,26 +10,13 @@ class NovaPlugin {
   }
   async initialize (server) {
     const applicationsPath = path.resolve(__dirname, '../../../applications')
-    let applications = []
-    const files = await glob.sync(`${applicationsPath}/**/resources.yml`)
-    files.map(file => {
-      const applicationPath = path.dirname(file)
-      const application = YAML.load(file)
-      applications.push(application)
-      _.map(application.rules, rule => {
-        switch (rule.type) {
-          case 'route':
-            delete rule.type
-            if (rule.config) rule.config = require(path.resolve(applicationPath, rule.config))
-            if (rule.handler) rule.handler = require(path.resolve(applicationPath, rule.handler))
-            debug('[%s] new rule with method %s and path %s', application.name, rule.method, rule.path)
-            this.__server.route(rule)
-            break
-          default:
-        }
-      })
+    const files = await glob.sync(`${applicationsPath}/**/server/**/index.js`)
+    files.map(async (file) => {
+      const route = require(file)
+      debug('[%s] add route with method %s and path %s', route.method, route.path)
+      await server.route(route)
     })
-    return applications
+    return {initialized: true}
   }
 }
 
@@ -42,7 +27,7 @@ const plugin = {
     try {
       Hoek.assert(server, '[nova-plugin] Server is mandatory')
       const nova = new NovaPlugin(server)
-      server.app.nova = await nova.initialize().catch(err => { throw err })
+      server.app.nova = await nova.initialize(server).catch(err => { throw err })
       return {registered: true}
     } catch (e) {
       return Promise.reject(e)

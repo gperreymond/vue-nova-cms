@@ -17,8 +17,9 @@ COPY . /usr/app
 RUN find . -name *.test.js -delete && \
     find . -name *.spec.js -delete
 
-# Make the install in the container to avoid compilation problems
-RUN yarn install --production --ignore-scripts --pure-lockfile --ignore-engines
+# Use npm in production instead of yarn
+RUN npm i --production && \
+    npm uninstall -g npm
 
 # Start application
 ENTRYPOINT ["./docker-entrypoint.sh"]

@@ -1,5 +1,7 @@
 const path = require('path')
 
-module.exports = {
+module.exports.method = 'GET'
+module.exports.path = '/{p*}'
+module.exports.handler = {
   file: { path: path.resolve(__dirname, '../../public/index.html') }
 }

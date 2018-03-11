@@ -1,8 +1,0 @@
-name: "Nova CMS"
-description: ""
-rules:
-    -
-      type: route
-      method: GET
-      path: "/{p*}"
-      handler: "server/static"

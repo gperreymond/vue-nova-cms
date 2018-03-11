@@ -18,4 +18,6 @@ const handler = async function (request) {
   }
 }
 
-module.exports = handler
+module.exports.method = 'POST'
+module.exports.path = '/admin/auth/control'
+module.exports.handler = handler

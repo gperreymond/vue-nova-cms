@@ -14,7 +14,7 @@ module.exports = {
     }
   },
   output: {
-    path: path.resolve(__dirname, '../../../build/webcomponents/demo-basic'),
+    path: path.resolve(__dirname, '../../../build/webcomponents/demo-vue'),
     filename: '[name].min.js'
   },
   module: {

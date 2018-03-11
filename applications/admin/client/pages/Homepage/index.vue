@@ -19,7 +19,7 @@
           <hr />
           <h5>Le nombre d'ulisateurs est un KPI essentiel à suivre.</h5>
           <p></p>
-          <p>0utilisateurs en tout</p>
+          <p>0 utilisateurs en tout</p>
           <p>0 utilisateurs le mois dernier</p>
         </div>
         <div class="statistic">
