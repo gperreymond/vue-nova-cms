@@ -8,8 +8,7 @@ export default {
     return {
       type: '[DemoVue]',
       uuid: false,
-      isDestroyed: false,
-      components: EventStore.components
+      isDestroyed: false
     }
   },
   mounted: function () {

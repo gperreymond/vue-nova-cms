@@ -8,8 +8,14 @@ export default {
     return {
       type: '[DemoVueAgain]',
       uuid: false,
-      components: EventStore.components
+      state: {}
     }
+  },
+  created: function () {
+    EventStore.$on(EventStore.EVENT_INITIALIZE_STORE, (state) => {
+      console.log(EventStore.EVENT_INITIALIZE_STORE)
+      this.state = state
+    })
   },
   mounted: function () {
     console.log(this.type, this._uid, 'mounted')
