@@ -8,8 +8,16 @@ export default {
     return {
       type: '[DemoVue]',
       uuid: false,
-      isDestroyed: false
+      isDestroyed: false,
+      state: {
+        count: 0
+      }
     }
+  },
+  created: function () {
+    VueEventStore.$on(VueEventStore.EVENT_STORE_UPDATED, (state) => {
+      this.state = { ...this.state, ...state }
+    })
   },
   mounted: function () {
     console.log(this.type, this._uid, 'mounted')
@@ -23,6 +31,10 @@ export default {
     VueEventStore.$emit(VueEventStore.EVENT_COMPONENT_DESTROYED, this._uid)
   },
   methods: {
+    increment: function () {
+      this.state.count++
+      VueEventStore.$emit(VueEventStore.EVENT_STORE_UPDATED, this.state)
+    },
     destroyMe: function () {
       this.$el.remove()
       this.$destroy()

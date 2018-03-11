@@ -8,12 +8,14 @@ export default {
     return {
       type: '[DemoVueAgain]',
       uuid: false,
-      state: {}
+      state: {
+        components: []
+      }
     }
   },
   created: function () {
     VueEventStore.$on(VueEventStore.EVENT_STORE_UPDATED, (state) => {
-      this.state = state
+      this.state = { ...this.state, ...state }
     })
   },
   mounted: function () {

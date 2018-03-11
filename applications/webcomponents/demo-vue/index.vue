@@ -4,6 +4,7 @@
       <b>WebComponent: Demo VueJS</b><br />
       <label>uid: {{ _uid }}</label>
     </p>
+    <p><button type="button" @click="increment">count: {{ state.count }}</button></p>
     <p><button type="button" @click="destroyMe">destroy me!</button></p>
   </div>
 </template>
