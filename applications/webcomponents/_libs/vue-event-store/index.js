@@ -15,7 +15,7 @@ if (!window.VueEventStore) {
   // event: EVENT_STORE_UPDATED
   VueEventStore.EVENT_STORE_UPDATED = 'VueEventStoreUpdated'
   // event: EventComponentMounted
-  VueEventStore.EVENT_COMPONENT_MOUNTED = 'EventComponentMounted'
+  VueEventStore.EVENT_COMPONENT_MOUNTED = 'VueEventStoreComponentMounted'
   VueEventStore.$on(VueEventStore.EVENT_COMPONENT_MOUNTED, function (component) {
     console.log(this.type, 'a new component is mounted', component._uid, component.type)
     this.state.components.push({
@@ -25,7 +25,7 @@ if (!window.VueEventStore) {
     this.$emit(VueEventStore.EVENT_STORE_UPDATED, this.state)
   })
   // event: EventDestroyComponent
-  VueEventStore.EVENT_COMPONENT_DESTROYED = 'EventComponentDestroyed'
+  VueEventStore.EVENT_COMPONENT_DESTROYED = 'VueEventStoreComponentDestroyed'
   VueEventStore.$on(VueEventStore.EVENT_COMPONENT_DESTROYED, function (_uid) {
     this.state.components = remove(this.state.components, item => {
       if (item._uid === _uid) { console.log(this.type, 'a component has been destroyed', _uid) }
