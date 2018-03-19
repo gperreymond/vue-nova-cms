@@ -23,12 +23,12 @@
           <p>0 utilisateurs le mois dernier</p>
         </div>
         <div class="statistic">
-          <h2 class="dark-green-text">Réponses</h2>
+          <h2 class="dark-green-text">Articles</h2>
           <hr />
-          <h5>Les sondages, et par extensions les réponses sont le coeur du système.</h5>
+          <h5>Les articles, sont le coeur du système.</h5>
           <p></p>
-          <p>0 réponses en tout</p>
-          <p>0 réponses le mois dernier</p>
+          <p>0 articles en tout</p>
+          <p>0 articles le mois dernier</p>
         </div>
       </div>
     </div>
