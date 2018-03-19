@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import '@/styles/main.css'
+import '@/main.css'
 
 import Homepage from '@/pages/Homepage'
 import Login from '@/pages/Login'

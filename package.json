@@ -8,7 +8,7 @@
     "test:standard": "./node_modules/.bin/standard --fix server/**/*.js src/**/*.js test/**/*.js | node_modules/.bin/snazzy",
     "test:server": "cross-env NODE_ENV=test nyc --clean --include=applications/**/server/**/*.js --include=server/**/*.js --report-dir ./coverage/server mocha --opts .mocharc",
     "test:applications": "cross-env NODE_ENV=test nyc --clean --include=applications/**/*.js --include=applications/**/*.vue --report-dir ./coverage/applications mocha-webpack --require test/setup.js --webpack-config webpack.config.test.js applications/**/*.spec.js",
-    "build:applications": "./node_modules/.bin/webpack -p --colors --config=webpack.config.js"
+    "build:applications": "NODE_ENV=production ./node_modules/.bin/webpack -p --colors --config=webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -59,12 +59,15 @@
     "css-loader": "0.28.11",
     "expect": "23.0.0-alpha.0",
     "extract-text-webpack-plugin": "4.0.0-beta.0",
+    "file-loader": "1.1.11",
     "jsdom": "11.6.2",
     "jsdom-global": "3.0.2",
     "mocha": "5.0.4",
     "mocha-webpack": "1.1.0",
     "nodemon": "1.17.2",
     "nyc": "11.6.0",
+    "semantic-ui-css": "2.3.1",
+    "semantic-ui-vue": "0.2.5",
     "sinon": "4.4.6",
     "snazzy": "7.1.1",
     "standard": "11.0.1",

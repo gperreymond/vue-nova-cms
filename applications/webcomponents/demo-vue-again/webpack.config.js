@@ -1,9 +1,8 @@
 const path = require('path')
-
 const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
+  cache: true,
   entry: {
     main: path.resolve(__dirname, 'main.js')
   },
@@ -11,6 +10,17 @@ module.exports = {
     extensions: ['.js', '.vue', '.json', '.css'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
+    }
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'initial'
+        }
+      }
     }
   },
   output: {
@@ -22,18 +32,20 @@ module.exports = {
       test: /\.vue$/,
       loader: 'vue-loader'
     }, {
+      test: /\.(eot|svg|ttf|woff|woff2)$/,
+      loader: 'file-loader?name=fonts/[name].[ext]'
+    }, {
+      test: /\.(png)$/,
+      loader: 'file-loader?name=images/[name].[ext]'
+    }, {
       test: /\.css$/,
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: 'css-loader'
-      })
+      use: ['style-loader', 'css-loader']
     }]
   },
   plugins: [
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development',
       DEBUG: true
-    }),
-    new ExtractTextPlugin('[name].min.css')
+    })
   ]
 }

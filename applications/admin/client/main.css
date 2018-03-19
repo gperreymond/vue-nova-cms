@@ -87,7 +87,7 @@ div {
 @media screen and (max-width: 640px) {
 }
 
-@import './colors.css';
-@import './header.css';
-@import './buttons.css';
-@import './containers.css';
+@import './styles/colors.css';
+@import './styles/header.css';
+@import './styles/buttons.css';
+@import './styles/containers.css';
