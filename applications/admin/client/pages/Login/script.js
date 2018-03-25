@@ -5,19 +5,24 @@ export default {
   name: 'ui-login',
   data: function () {
     return {
+      state: false
     }
   },
+  created: function () {
+    this.debug('created (internal)')
+  },
   mounted: function () {
-    this.debug('mounted')
+    this.debug('mounted (internal)')
+    // this.$estore.setState('debug', 'wtf')
   },
   updated: function () {
-    this.debug('updated')
+    this.debug('updated (internal)')
   },
   destroyed: function () {
-    this.debug('destroyed')
+    this.debug('destroyed (internal)')
   },
   methods: {
-    debug: debug('nova:admin:ui-login'),
+    debug: debug('nova:admin:login'),
     authLogin
   }
 }

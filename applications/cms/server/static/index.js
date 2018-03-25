@@ -17,7 +17,6 @@ module.exports.handler = async (request) => {
     const html = await renderer.renderToString(app).catch(err => { throw err })
     return html
   } catch (e) {
-    console.log(e)
     return {renderer: false}
   }
 }

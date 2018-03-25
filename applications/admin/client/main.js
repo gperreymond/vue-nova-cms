@@ -8,9 +8,11 @@ import '@/main.css'
 import Homepage from '@/pages/Homepage'
 import Login from '@/pages/Login'
 import Loader from '@/components/Loader'
+import EventsStore from '@libs/vue-events-store'
 
-if (process.env.DEBUG === true) window.localStorage.debug = 'nova:admin:*'
+if (process.env.DEBUG === true) window.localStorage.debug = 'nova:*'
 
+Vue.use(EventsStore)
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 

@@ -9,11 +9,11 @@ export default async function () {
       responseType: 'json'
     }
     const response = await axios(options).catch(error => { throw error })
-    this.debug('authControl response %o', response)
+    this.debug('authControl response')
     this.connected(response.data)
     this.currentState = 'STATE_COMPLETE'
   } catch (e) {
-    this.debug('authControl error %o', e)
+    this.debug('authControl error %s', e.message)
     this.disconnected()
     this.catchError(e.response)
   }

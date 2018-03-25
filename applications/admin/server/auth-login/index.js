@@ -26,7 +26,6 @@ const handler = async function (request, h) {
     h.state('rememberMePluginAdmin', token, { ttl, isSecure: false, isHttpOnly: false })
     return h.redirect('/admin')
   } catch (e) {
-    console.log(e)
     return Promise.reject(e)
   }
 }

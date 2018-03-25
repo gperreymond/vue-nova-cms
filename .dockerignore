@@ -2,6 +2,7 @@
 .git
 .nyc_output
 coverage
+data
 node_modules
 test
 
